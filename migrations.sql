@@ -4,3 +4,11 @@ CREATE TABLE IF NOT EXISTS books (
     description text not null,
     author text not null
 );
+
+CREATE TABLE IF NOT EXISTS authors (
+
+);
+
+CREATE TABLE IF NOT EXISTS genres (
+
+);

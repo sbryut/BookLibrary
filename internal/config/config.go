@@ -1,4 +1,4 @@
-package main
+package config
 
 import (
 	_ "github.com/joho/godotenv/autoload"
@@ -6,24 +6,26 @@ import (
 )
 
 type Config struct {
-	DB   PostgresConfig
-	Port string
+	DB         PostgresConfig
+	ServerPort string
 }
 
 type PostgresConfig struct {
+	Host     string
+	Port     string
 	Username string
 	Password string
-	Port     string
 	DBName   string
 }
 
 func LoadConfig() (*Config, error) {
 	cfg := &Config{
-		Port: os.Getenv("SERVER_PORT"),
+		ServerPort: os.Getenv("SERVER_PORT"),
 		DB: PostgresConfig{
+			Host:     os.Getenv("POSTGRES_HOST"),
+			Port:     os.Getenv("POSTGRES_EXTERNAL_PORT"),
 			Username: os.Getenv("POSTGRES_USER"),
 			Password: os.Getenv("POSTGRES_PASSWORD"),
-			Port:     os.Getenv("POSTGRES_EXTERNAL_PORT"),
 			DBName:   os.Getenv("POSTGRES_DB"),
 		},
 	}
